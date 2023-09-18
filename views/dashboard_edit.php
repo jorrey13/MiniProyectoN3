@@ -133,8 +133,7 @@ if (!isset($_SESSION["user_data"])) {
                 </div>
                 <div class="col-8">
                     <label for="contrasena" class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Enter your " id="contrasena" name="contrasena" value="<?php $password = $_SESSION["user_data"]["contrasena"];
-                    echo "$password"; ?>">
+                    <input type="password" class="form-control" placeholder="Enter your " id="contrasena" name="contrasena" value="">
                 </div>
                 <div class="col-8">
                     <button type="submit" class="btn btn-primary">Edit</button>

@@ -90,6 +90,14 @@ if (!isset($_SESSION["user_data"])) {
         <div class="py-1 text-center">
             <h2>Personal info</h2>
             <p class="lead">Basic info, like your name and photo.</p>
+            <?php
+                        if (isset($_SESSION["dato_actualizado"]) && $_SESSION["dato_actualizado"]) {
+                            echo "<div class='alert alert-success' role='alert'>
+                               Información actualizada correctamente!!
+                            </div>" . "<br>";
+                            $_SESSION["dato_actualizado"] = false;
+                        }
+            ?>
         </div>
 
         <form action="" method="POST" enctype="multipart/form-data" class="container-form">
