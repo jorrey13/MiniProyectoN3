@@ -54,7 +54,7 @@
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="password" />
+                                    <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="password" required />
                                 </div>
 
                                 <!-- Submit button -->
