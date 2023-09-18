@@ -137,7 +137,7 @@ if (!isset($_SESSION["user_data"])) {
                     echo "$password"; ?>">
                 </div>
                 <div class="col-8">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
                 </div>
             </form>
         </div>

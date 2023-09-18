@@ -1,11 +1,10 @@
 <?php
 echo "Estás aquí";
+session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    session_start();
     require_once($_SERVER["DOCUMENT_ROOT"] . "/config/conexion.php");
     $email = $_POST["email"];
     $nombre = $_POST["name"];
-    $id = $_POST["id"];
     $bio = $_POST["bio"];
     $phone = $_POST["phone"];
     $password = $_POST["contrasena"];
@@ -24,27 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         while ($row = $stmnt->fetch_assoc()) {
             if (isset($row["url_imagen"])) {
                 $fn_location_db = $row["url_imagen"];
-                $hash = password_hash($password, PASSWORD_DEFAULT);
-                // Actualizar todos los campos en la base de datos
-                $sql = "UPDATE usuarios SET nombre = '$nombre', bio = '$bio', phone = '$phone', email = '$email', contrasena = '$hash', url_imagen = '$fn_location_db' WHERE id = '$id'";
-                }
-                if ($mysqli->query($sql)) {
-                    echo "Actualización exitosa";
-                    header("Location: /views/dashboard.php?guardado_con_exito!!");
-                } else {
-                    echo "Error al actualizar: " . $mysqli->error;
-                }
+            }
         }
     }
 
-    
-    
-    // $nombre !== "" && $mysqli->query("UPDATE usuarios SET nombre = '$nombre' WHERE id = '$id'");
-    // $bio !== "" && $mysqli->query("UPDATE usuarios SET bio = '$bio' WHERE id = '$id'");
-    // $phone !== "" && $mysqli->query("UPDATE usuarios SET phone = '$phone' WHERE id = '$id'");
-    // $email !== "" && $mysqli->query("UPDATE usuarios SET email = '$email' WHERE id = '$id'");
-    // $password !== "" && $mysqli->query("UPDATE usuarios SET contrasena = '$hash' WHERE id = '$id'");
-    // header("Location: /views/dashboard.php");
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
+    // Actualizar todos los campos en la base de datos
+    $sql = "UPDATE usuarios SET nombre = '$nombre', bio = '$bio', phone = '$phone', email = '$email', contrasena = '$hash', url_imagen = '$fn_location_db' WHERE email = '$email'";
+    
+    if ($mysqli->query($sql)) {
+        echo "Actualización exitosa";
+        header("Location: /views/dashboard.php");
+    } else {
+        echo "Error al actualizar: " . $mysqli->error;
+    }
 }
 ?>
