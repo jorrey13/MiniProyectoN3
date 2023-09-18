@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,36 +28,42 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <img src="assets/devchallenges.svg" alt="">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                        <h3 class="card-title">Iniciar Sesión</h3>
-                            <form action="/handle_db/verify.php" method="POST">
+                        <img src="./../assets/devchallenges.svg" alt="">
+                        <h3 class="card-title">Login</h3>
+                        <?php
+                        if (isset($_SESSION["inicio_sesion"]) && $_SESSION["inicio_sesion"]) {
+                            echo "<div class='alert alert-warning' role='alert'>
+                                Debes iniciar sesión para continuar!
+                            </div>" . "<br>";
+                            $_SESSION["inicio_sesion"] = false;
+                        }
+                        ?>
+                        <?php
+                        if (isset($_SESSION["usuario_mal"]) && $_SESSION["usuario_mal"]) {
+                            echo "<div class='alert alert-danger' role='alert'>
+                                Correo o contraseña incorrecta!
+                            </div>" . "<br>";
+                            $_SESSION["usuario_mal"] = false;
+                        }
+                        ?>
+                            <form action="./../handle_db/verify.php" method="POST">
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
-                                    <input type="email" id="form2Example1" class="form-control" />
-                                    <label class="form-label" for="form2Example1">Email address</label>
+                                    <input type="email" id="correo" name="correo" class="form-control" placeholder="email" required/>
                                 </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example2" class="form-control" />
-                                    <label class="form-label" for="form2Example2">Password</label>
-                                </div>
-
-                                <!-- 2 column grid layout for inline styling -->
-                                <div class="row mb-4">
-                                    <div class="col d-flex justify-content-center">
-                                    <!-- Checkbox -->
-                                    </div>
+                                    <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="password" />
                                 </div>
 
                                 <!-- Submit button -->
-                                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
                                 <!-- Register buttons -->
-                                <div class="text-center">
-                                    <p>Not a member? <a href="#!">Register</a></p>
+                            </form>
+                            <div class="text-center">
+                                <p>or continue with these social profile:</p>
                                     <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-facebook-f"></i>
                                     </button>
@@ -70,9 +79,8 @@
                                     <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-github"></i>
                                     </button>
-                                    <p>or sign up with:</p>
+                                    <p>Not a member? <a href="./../index.php">Register</a></p>
                                 </div>
-                            </form>
                     </div>
                 </div>
             </div>

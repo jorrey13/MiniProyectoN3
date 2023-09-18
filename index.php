@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Registro</title>
     <!-- Agregar la referencia a Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Agregar la referencia a Font Awesome para los iconos -->
@@ -26,34 +26,29 @@
                 <div class="card">
                     <div class="card-body">
                         <img src="assets/devchallenges.svg" alt="">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <form action="/handle_db/create.php" method="POST">
+                        <h5 class="card-text">Join thousands of learners from around the world.</h5>
+                        <p class="card-subtitle mb-2 text-body-secondary">Master web development by making real-life projects. There are multiple paths for you to choose</p>
+                                <?php
+                                session_start();
+                                if (isset($_SESSION["duplicado"]) && $_SESSION["duplicado"]) {
+                                    echo "<div class='alert alert-warning' role='alert'>
+                                    El correo ya esta en uso!
+                                    </div>" . "<br>";
+                                    $_SESSION["duplicado"]= false;
+                                }
+                                ?>
+                            <form action="/handle_db/create.php" method="post">
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
-                                    <input type="email" id="form2Example1" class="form-control" />
-                                    <label class="form-label" for="form2Example1">Email address</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="email" required />
                                 </div>
-
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example2" class="form-control" />
-                                    <label class="form-label" for="form2Example2">Password</label>
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="password" required />
                                 </div>
-
-                                <!-- 2 column grid layout for inline styling -->
-                                <div class="row mb-4">
-                                    <div class="col d-flex justify-content-center">
-                                    <!-- Checkbox -->
-                                    </div>
-                                </div>
-
-                                <!-- Submit button -->
-                                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-                                <!-- Register buttons -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Start coding now</button>
                                 <div class="text-center">
-                                    <p>Not a member? <a href="#!">Register</a></p>
+                                    <p>or continue with these social profile:</p>
                                     <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-facebook-f"></i>
                                     </button>
@@ -69,7 +64,7 @@
                                     <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-github"></i>
                                     </button>
-                                    <p>or sign up with:</p>
+                                    <p>if you are member! <a href="views/login.php">Login here</a></p>
                                 </div>
                             </form>
                     </div>

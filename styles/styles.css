@@ -1,0 +1,33 @@
+
+.centered-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.informacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+    background-color: red;
+    width: 950px;
+    height: 350px;
+}
+
+.informacion-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.row{
+    border: 100px ;
+    width: auto;
+    height: hidden;
+    border: 0.1px outset rgb(243, 237, 237);
+    padding: 10px 10px;
+}
+
